@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 2uio4yfg4302]JJ
+      MSSQL_PID: Evaluation
+  
+  client:
+    build: .
+    entrypoint: bash
+    volumes:
+      - .:/mytest
+    depends_on:
+      - db
